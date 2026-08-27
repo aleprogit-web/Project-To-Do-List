@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do List</title>
+  <link rel="stylesheet" href="styles/index.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="to-do-title">
+      <div class="to-do-header">
+         <p class="title">To-Do List</p>
+         <img class="heart-icon" src="images/heart.png">
+      </div>
+     
+      <p class="subtitle">Organize suas tarefas <br>
+      e seja mais produtivo!</p>
+    </div>
+    <section class="sidebar-options">
+      <button class="option">
+        <img src="images/list.png">
+        <span>Todas</span>
+        <span class="task-number">8</span>
+      </button>
+      <button class="option">
+        <img src="images/circle.png">
+        <span>Pendentes</span>
+        <span class="task-number">8</span>
+      </button>
+      <button class="option">
+        <img src="images/check.png">
+        <span>Concluídas</span>
+        <span class="task-number">8</span>
+      </button>
+      <button class="option">
+        <img src="images/star.png">
+        <span>Favoritas</span>
+        <span class="task-number">8</span>
+      </button>
+    </section>
+
+    <section class="daily-summary">
+      <div class="summary-header">
+        <img src="images/chart.png"> 
+        <p>Resumo do dia</p></div>
+        <div class="summary-list">
+          <p>5 pendentes</p>
+          <p>3 concluídos</p>
+          <p>0 vencendo hoje</p>
+        </div> 
+    </section>
+
+    <img class="icon"src="images/open-book.png">
+  </aside>
+
+  <main class="main">
+    <header class="header">
+      <div class="header-info">
+        <p class="greeting">Olá, Alexandra!</p>
+        <p class="greeting-subtitle">Tenha um dia incrível e produtivo.</p>
+      </div>
+
+      <div class="header-buttons">
+        <button class="mode-button">
+          <img src="images/sun.png"></button>
+        <button class="settings-button">
+          <img src="images/settings.png"></button>
+      </div>
+    </header>
+
+    <div class="task-input">
+       <input class="input js-to-do-input" placeholder="O que você precisa fazer?">
+       <button class="add-button js-add-button">+ Adicionar</button>
+    </div>
+
+    <div class="filters">
+      <button class="filter-button filter-option">
+        <img class="filters-icons" src="images/list.png">Todas
+      </button>
+      <button class="filter-button filter-option">
+        <img class="filters-icons" src="images/circle.png">Pendentes
+      </button>
+      <button class="filter-button filter-option">
+        <img class="filters-icons" src="images/check.png">Concluídas
+      </button>
+      <button class="filter-button delete-all"> 
+        <img class="filters-icons" src="images/delete.png">Limpar concluídas
+      </button>
+      
+    </div>
+
+    <section class="to-do-list">
+      <div class="to-do-actions">
+        <button class="check-button"></button>
+        <p class="to-do">Estudar JavaScript</p>
+        <img class="delete-button" src="images/delete-gray.png">
+      </div>
+      <div class="to-do-actions">
+        <button class="check-button"></button>
+        <p class="to-do">Estudar JavaScript</p>
+        <img class="delete-button" src="images/delete-gray.png">
+      </div>
+      <div class="to-do-actions">
+        <button class="check-button"></button>
+        <p class="to-do">Estudar JavaScript</p>
+        <img class="delete-button" src="images/delete-gray.png">
+      </div>
+      <div class="to-do-actions">
+        <button class="check-button"></button>
+        <p class="to-do">Estudar JavaScript</p>
+        <img class="delete-button" src="images/delete-gray.png">
+      </div>
+      <div class="to-do-actions">
+        <button class="check-button"></button>
+        <p class="to-do">Estudar JavaScript</p>
+        <img class="delete-button" src="images/delete-gray.png">
+      </div>
+      <div class="to-do-actions">
+        <button class="check-button"></button>
+        <p class="to-do">Estudar JavaScript</p>
+        <img class="delete-button" src="images/delete-gray.png">
+      </div>
+      <div class="to-do-actions">
+        <button class="check-button"></button>
+        <p class="to-do">Estudar JavaScript</p>
+        <img class="delete-button" src="images/delete-gray.png">
+      </div>
+      <div class="to-do-actions">
+        <button class="check-button"></button>
+        <p class="to-do">Estudar JavaScript</p>
+        <img class="delete-button" src="images/delete-gray.png">
+      </div>
+      <div class="to-do-actions">
+        <button class="check-button"></button>
+        <p class="to-do">Estudar JavaScript</p>
+        <img class="delete-button" src="images/delete-gray.png">
+      </div>
+    </section>
+   
+  </main>
+  
+  <script src="scripts/to-do.js"></script>
+</body>
+</html>
