@@ -301,6 +301,10 @@ body.dark-mode .to-do-actions {
   color: white;
 }
 
+.to-do-actions.completed .to-do {
+  text-decoration: line-through;
+}
+
 .check-button{
   width: 23px;
   height: 23px;
@@ -314,6 +318,10 @@ body.dark-mode .to-do-actions {
 body.dark-mode .check-button{
   border-color: #f8a0af;
   background-color: #3b2932;
+}
+
+.to-do-actions.completed .check-button {
+  background-color: #c01733;
 }
 
 .delete-button{
