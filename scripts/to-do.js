@@ -26,17 +26,17 @@ function renderTodoList() {
   const deleteEach = document.querySelectorAll('.js-delete-button');
 
   deleteEach.forEach((button) => {
-  button.addEventListener('click', (event) => {
+    button.addEventListener('click', (event) => {
 
-  const closestDiv = event.target.closest('.to-do-actions');
-  const matchingId = closestDiv.dataset.id;
-  const indice = todoHistory.findIndex((todo) => todo.id === matchingId);
+    const closestDiv = event.target.closest('.to-do-actions');
+    const matchingId = closestDiv.dataset.id;
+    const indice = todoHistory.findIndex((todo) => todo.id === matchingId);
 
-  todoHistory.splice(indice, 1);
-  localStorage.setItem('todoList', JSON.stringify(todoHistory));
-  renderTodoList();
+    todoHistory.splice(indice, 1);
+    localStorage.setItem('todoList', JSON.stringify(todoHistory));
+    renderTodoList();
 
-})
+  })
 
 })
 

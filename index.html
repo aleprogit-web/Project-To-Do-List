@@ -23,23 +23,23 @@
       e seja mais produtivo!</p>
     </div>
     <section class="sidebar-options">
-      <button class="option">
-        <img src="images/list.png">
+      <button class="option todas-option">
+        <img class="todas-img" src="images/list.png">
         <span>Todas</span>
         <span class="task-number">8</span>
       </button>
       <button class="option">
-        <img src="images/circle.png">
+        <img class="pendentes-img" src="images/circle.png">
         <span>Pendentes</span>
         <span class="task-number">8</span>
       </button>
       <button class="option">
-        <img src="images/check.png">
+        <img class="concluidas-img" src="images/check.png">
         <span>Concluídas</span>
         <span class="task-number">8</span>
       </button>
       <button class="option">
-        <img src="images/star.png">
+        <img class="favoritas-img" src="images/star.png">
         <span>Favoritas</span>
         <span class="task-number">8</span>
       </button>
@@ -47,7 +47,6 @@
 
     <section class="daily-summary">
       <div class="summary-header">
-        <img src="images/chart.png"> 
         <p>Resumo do dia</p></div>
         <div class="summary-list">
           <p>5 pendentes</p>
@@ -67,8 +66,8 @@
       </div>
 
       <div class="header-buttons">
-        <button class="mode-button">
-          <img src="images/sun.png"></button>
+        <button class="mode-button js-mode-button">
+          <img class="mode-icon"src="images/sun.png"></button>
         <button class="settings-button">
           <img src="images/settings.png"></button>
       </div>
@@ -81,13 +80,13 @@
 
     <div class="filters">
       <button class="filter-button filter-option">
-        <img class="filters-icons" src="images/list.png">Todas
+        <img class="filters-icons todas-img" src="images/list.png">Todas
       </button>
       <button class="filter-button filter-option">
-        <img class="filters-icons" src="images/circle.png">Pendentes
+        <img class="filters-icons pendentes-img" src="images/circle.png">Pendentes
       </button>
       <button class="filter-button filter-option">
-        <img class="filters-icons" src="images/check.png">Concluídas
+        <img class="filters-icons concluidas-img" src="images/check.png">Concluídas
       </button>
       <button class="filter-button delete-all"> 
         <img class="filters-icons" src="images/delete.png">Limpar concluídas
@@ -105,5 +104,6 @@
   </main>
   
   <script src="scripts/to-do.js"></script>
+  <script src="scripts/pageMode.js"></script>
 </body>
 </html>
