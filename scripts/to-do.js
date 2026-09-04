@@ -141,7 +141,8 @@ addButton.addEventListener('click', () => {
     texto: todo,
     id: idNum,
     concluida: false,
-    favorita: false
+    favorita: false,
+    data: null
   });
   localStorage.setItem('todoList', JSON.stringify(todoHistory));
   renderTodoList();
