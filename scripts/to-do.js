@@ -88,6 +88,7 @@ function renderTodoList(tasks = todoHistory) {
     todoHistory.splice(indice, 1);
     localStorage.setItem('todoList', JSON.stringify(todoHistory));
     renderTodoList();
+    updateTaskNumber();
 
     })
 
@@ -105,6 +106,7 @@ function renderTodoList(tasks = todoHistory) {
       localStorage.setItem('todoList', JSON.stringify(todoHistory));
 
       renderTodoList();
+      updateTaskNumber();
 
       })
 
@@ -123,6 +125,7 @@ function renderTodoList(tasks = todoHistory) {
       localStorage.setItem('todoList', JSON.stringify(todoHistory));
 
       renderTodoList();
+      updateTaskNumber();
     })
 
   })
@@ -142,6 +145,7 @@ addButton.addEventListener('click', () => {
   });
   localStorage.setItem('todoList', JSON.stringify(todoHistory));
   renderTodoList();
+  updateTaskNumber();
 
 })
 
@@ -152,10 +156,27 @@ deleteAllButton.addEventListener('click', () => {
    localStorage.setItem('todoList', JSON.stringify(todoHistory));
 
   renderTodoList();
+  updateTaskNumber();
   
-
 })
 
+function updateTaskNumber(){
+  const allTaskNumber = document.querySelector('.js-all-task-number');
+  const allPendingNumber = document.querySelector('.js-pending-task-number');
+  const allCheckedNumber = document.querySelector('.js-checked-task-number');
+  const allFavoriteNumber = document.querySelector('.js-favorite-task-number');
+
+
+  allTaskNumber.innerHTML = todoHistory.length;
+  allPendingNumber.innerHTML = todoHistory.filter((todo) => !todo.concluida).length;
+  allCheckedNumber.innerHTML = todoHistory.filter((todo) => todo.concluida).length;
+  allFavoriteNumber.innerHTML = todoHistory.filter((todo) => todo.favorita).length;
+
+}
+
 renderTodoList();
+updateTaskNumber();
+
+
 
 
