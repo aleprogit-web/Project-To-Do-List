@@ -3,7 +3,7 @@ import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
 //ELEMENTOS DO HTML
 const todoList = document.querySelector('.to-do-list');
 const addButton = document.querySelector('.js-add-button');
-const deleteAllButton = document.querySelector('.delete-all');
+
 
 const dateInput = document.querySelector('.js-date-input');
 const previousButton = document.querySelector('.js-previous-day');
@@ -13,6 +13,7 @@ const pendingFilter = document.querySelectorAll('.js-pending-filter');
 const checkedFilter = document.querySelectorAll('.js-checked-filter');
 const allFilter = document.querySelectorAll('.js-all-filter');
 const favoriteFilter = document.querySelector('.js-favorite-filter');
+const dayFilter = document.querySelector('.day-filter');
 
 //DADOS
 let todoHistory = JSON.parse(localStorage.getItem('todoList')) || [];
@@ -23,6 +24,16 @@ let summaryDate = today;
 
 function getSummaryTasks() {
   return todoHistory.filter((todo) => todo.data === summaryDate);
+}
+
+function updateTodoList() {
+  localStorage.setItem('todoList', JSON.stringify(todoHistory));
+
+  renderTodoList(getSummaryTasks());
+
+  updateTaskNumber();
+
+  updateDailySummary();
 }
 
 function renderTodoList(tasks = todoHistory) {
@@ -70,20 +81,6 @@ function renderTodoList(tasks = todoHistory) {
   })
   todoList.innerHTML = todoArray;
 
-  
-
-  const favoriteButton  = document.querySelectorAll('.js-star-button');
-
-  favoriteButton.forEach((button) => {
-    button.addEventListener('click', (event) => {
-      
-
-
-      
-    })
-
-  })
-
 }
 
 function getTodoIndex(element) {
@@ -102,10 +99,7 @@ todoList.addEventListener('click', (event) => {
     const indice = getTodoIndex(event.target);
 
     todoHistory.splice(indice, 1);
-    localStorage.setItem('todoList', JSON.stringify(todoHistory));
-    renderTodoList(getSummaryTasks());
-    updateTaskNumber();
-    updateDailySummary();
+    updateTodoList();
 
   }
 
@@ -114,11 +108,7 @@ todoList.addEventListener('click', (event) => {
     const indice = getTodoIndex(event.target);
 
     todoHistory[indice].concluida =  !todoHistory[indice].concluida;
-    localStorage.setItem('todoList', JSON.stringify(todoHistory));
-
-    renderTodoList(getSummaryTasks());
-    updateTaskNumber();
-    updateDailySummary();
+    updateTodoList();
 
   } 
 
@@ -127,11 +117,7 @@ todoList.addEventListener('click', (event) => {
     const indice = getTodoIndex(event.target);
 
     todoHistory[indice].favorita =  !todoHistory[indice].favorita;
-    localStorage.setItem('todoList', JSON.stringify(todoHistory));
-
-    renderTodoList(getSummaryTasks());
-    updateTaskNumber();
-    updateDailySummary();
+    updateTodoList();
 
   }
 
@@ -150,24 +136,11 @@ addButton.addEventListener('click', () => {
     favorita: false,
     data: date
   });
-  localStorage.setItem('todoList', JSON.stringify(todoHistory));
-  renderTodoList(getSummaryTasks());
-  updateDailySummary();
-  updateTaskNumber();
-  
-
-})
-
-//LIMPAR TAREFAS CONCLUÍDAS
-deleteAllButton.addEventListener('click', () => {
-   todoHistory = todoHistory.filter((todo) => !todo.concluida);
-   localStorage.setItem('todoList', JSON.stringify(todoHistory));
-
-  renderTodoList();
-  updateTaskNumber();
-  updateDailySummary();
+  updateTodoList();
   
 })
+
+
 
 //FILTROS
 pendingFilter.forEach((button) => {
@@ -197,6 +170,10 @@ favoriteFilter.addEventListener('click', () => {
   renderTodoList(favoriteTodos);
 })
 
+dayFilter.addEventListener('click', () => {
+  renderTodoList(getSummaryTasks());
+});
+
 //RESUMO DO DIA
 function updateTaskNumber(){
   const allTaskNumber = document.querySelector('.js-all-task-number');
@@ -213,14 +190,14 @@ function updateTaskNumber(){
 }
 
 function updateDailySummary() {
-  const todayTodos = todoHistory.filter((todo) => todo.data === summaryDate);
-  const todayTasks = document.querySelector('.js-today-total');
-  const todayChecked = document.querySelector('.js-today-checked');
-  const todayPending = document.querySelector('.js-today-pending');
+  const summaryTodos = todoHistory.filter((todo) => todo.data === summaryDate);
+  const summaryTasks = document.querySelector('.js-summary-total');
+  const summaryChecked = document.querySelector('.js-summary-checked');
+  const summaryPending = document.querySelector('.js-summary-pending');
 
-  todayTasks.innerHTML = todayTodos.length;
-  todayChecked.innerHTML = todayTodos.filter((todo) => todo.concluida).length;
-  todayPending.innerHTML = todayTodos.filter((todo) => !todo.concluida).length;
+  summaryTasks.innerHTML = summaryTodos.length;
+  summaryChecked.innerHTML = summaryTodos.filter((todo) => todo.concluida).length;
+  summaryPending.innerHTML = summaryTodos.filter((todo) => !todo.concluida).length;
 }
 
 function updateSummaryDate() {
