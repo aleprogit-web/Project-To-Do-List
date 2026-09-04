@@ -6,11 +6,14 @@ const pendentesIcon = document.querySelectorAll('.pendentes-img');
 const concluidasIcon = document.querySelectorAll('.concluidas-img');
 const favoritasIcon = document.querySelectorAll('.favoritas-img');
 
+const calendarioIcon = document.querySelector('.calendar-img');
+
 modeButton.addEventListener('click', () => {
   body.classList.toggle('dark-mode');
 
   if (body.classList.contains('dark-mode') === true){
      modeIcon.src = 'images/moon.png';
+     calendarioIcon.src = 'images/calendarioDarkMode.png';
 
   todasIcon.forEach((icon) => {
     icon.src = 'images/darkModeList.png';
@@ -27,8 +30,10 @@ modeButton.addEventListener('click', () => {
   favoritasIcon.forEach((icon) => {
     icon.src = 'images/darkModeStar.png';
   });
+
   }else{
     modeIcon.src = 'images/sun.png';
+    calendarioIcon.src = 'images/calendario.png';
      
   todasIcon.forEach((icon) => {
     icon.src = 'images/list.png';

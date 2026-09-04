@@ -47,12 +47,20 @@
 
     <section class="daily-summary">
       <div class="summary-header">
-        <p>Resumo do dia</p></div>
+        <p>Resumo do dia</p>
+        <div class="summary-date">
+          <button class="day-button js-previous-day">←</button>
+          <span class="js-summary-date">04/09/2026</span>
+          <button class="day-button js-next-day">→</button>
+        </div>
+      </div>
+         
+
         <div class="summary-list">
-          <p>5 pendentes</p>
-          <p>3 concluídos</p>
-          <p>0 vencendo hoje</p>
-        </div> 
+          <p><span class="js-today-total"></span> total</p>
+          <p><span class="js-today-checked"></span> concluídos</p>
+          <p><span class="js-today-pending"></span> pendentes</p>
+        </div>
     </section>
 
     <img class="icon"src="images/open-book.png">
@@ -80,8 +88,9 @@
       </div>
 
       <div class="task-options">
-        <span>Data (opcional)</span>
-        <input id="task-date" type="date">
+        <img class="calendar-img" src="images/calendario.png">
+        <span class="data-opcional">Data (opcional)</span>
+        <input id="task-date" type="date" class="js-date-input">
       </div>
     </div>
     
@@ -107,7 +116,7 @@
    
   </main>
   
-  <script src="scripts/to-do.js"></script>
+  <script type="module" src="scripts/to-do.js"></script>
   <script src="scripts/pageMode.js"></script>
 </body>
 </html>

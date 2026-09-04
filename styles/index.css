@@ -134,15 +134,25 @@ body.dark-mode .daily-summary{
 }
 
 .summary-header{
-  gap: 10px; 
   display: flex;
   align-items: center;
   margin-bottom: 10px;
   color:#c01733;
+  flex-direction: column;
 }
 
 body.dark-mode .summary-header{
   color: #f8a0af;
+}
+
+.day-button{
+  border: none;
+  background-color: #f1b5bf;
+  cursor: pointer;
+}
+
+.summary-date{
+  font-size: 15px;
 }
 
 .icon{
@@ -335,6 +345,11 @@ body.dark-mode .filter-button{
 body.dark-mode .to-do-actions {
   background-color: #3b2932;
   color: white;
+}
+
+.task-date{
+  color: #353535;
+  font-size: 15px;
 }
 
 .to-do-actions.completed .to-do {

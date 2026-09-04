@@ -6,7 +6,10 @@ const todoList = document.querySelector('.to-do-list');
 
 const deleteAllButton = document.querySelector('.delete-all');
 
+import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
 
+const today = dayjs().format('YYYY-MM-DD');
+let summaryDate = today;
 
 const pendingFilter = document.querySelectorAll('.js-pending-filter');
 pendingFilter.forEach((button) => {
@@ -61,12 +64,21 @@ function renderTodoList(tasks = todoHistory) {
       favoriteIcon = 'images/favoriteStar.png';
     }
 
+    let dayFormat;
+
+    if (todo.data){
+      dayFormat = dayjs(todo.data).format('DD/MM/YYYY');
+    }else{
+      dayFormat = "";
+    }
+
     let html = 
       `<div class="to-do-actions ${taskClass}" 
         data-id="${todo.id}">
         <button class="check-button js-check-button"></button>
         <p class="to-do">${todo.texto}</p>
         <div class="task-actions">
+          <p class="task-date">${dayFormat}</p>
           <img class="favorite-star js-star-button" src="${favoriteIcon}">
           <img class="delete-button js-delete-button" src="images/delete-gray.png">
         </div>
@@ -89,6 +101,7 @@ function renderTodoList(tasks = todoHistory) {
     localStorage.setItem('todoList', JSON.stringify(todoHistory));
     renderTodoList();
     updateTaskNumber();
+    updateDailySummary();
 
     })
 
@@ -107,6 +120,7 @@ function renderTodoList(tasks = todoHistory) {
 
       renderTodoList();
       updateTaskNumber();
+      updateDailySummary();
 
       })
 
@@ -126,27 +140,32 @@ function renderTodoList(tasks = todoHistory) {
 
       renderTodoList();
       updateTaskNumber();
+      updateDailySummary();
     })
 
   })
 
 }
 
+const dateInput = document.querySelector('.js-date-input');
 
 addButton.addEventListener('click', () => {
 
   const idNum = crypto.randomUUID();
   const todo = document.querySelector('.js-to-do-input').value;
+  const date = dateInput.value;
   todoHistory.push({
     texto: todo,
     id: idNum,
     concluida: false,
     favorita: false,
-    data: null
+    data: date
   });
   localStorage.setItem('todoList', JSON.stringify(todoHistory));
   renderTodoList();
+  updateDailySummary();
   updateTaskNumber();
+  
 
 })
 
@@ -158,6 +177,7 @@ deleteAllButton.addEventListener('click', () => {
 
   renderTodoList();
   updateTaskNumber();
+  updateDailySummary();
   
 })
 
@@ -175,8 +195,24 @@ function updateTaskNumber(){
 
 }
 
+function updateDailySummary() {
+  const todayTodos = todoHistory.filter((todo) => todo.data === today);
+  const todayTasks = document.querySelector('.js-today-total');
+  const todayChecked = document.querySelector('.js-today-checked');
+  const todayPending = document.querySelector('.js-today-pending');
+
+  todayTasks.innerHTML = todayTodos.length;
+  todayChecked.innerHTML = todayTodos.filter((todo) => todo.concluida).length;
+  todayPending.innerHTML = todayTodos.filter((todo) => !todo.concluida).length;
+}
+
+function update
+
 renderTodoList();
+updateDailySummary();
 updateTaskNumber();
+
+
 
 
 
