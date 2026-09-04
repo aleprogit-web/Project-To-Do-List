@@ -103,8 +103,6 @@ body.dark-mode .option{
   color: white;
 }
 
-
-
 .option:hover{
   background-color: #e995a3;
 }
@@ -324,8 +322,11 @@ body.dark-mode .check-button{
   background-color: #c01733;
 }
 
-.delete-button{
+.task-actions {
   margin-left: auto;
-  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor:pointer;
 }
 
