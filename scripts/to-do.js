@@ -42,6 +42,9 @@ favoriteFilter.addEventListener('click', () => {
   renderTodoList(favoriteTodos);
 })
 
+function getSummaryTasks() {
+  return todoHistory.filter((todo) => todo.data === summaryDate);
+}
 
 function renderTodoList(tasks = todoHistory) {
 
@@ -196,7 +199,7 @@ function updateTaskNumber(){
 }
 
 function updateDailySummary() {
-  const todayTodos = todoHistory.filter((todo) => todo.data === today);
+  const todayTodos = todoHistory.filter((todo) => todo.data === summaryDate);
   const todayTasks = document.querySelector('.js-today-total');
   const todayChecked = document.querySelector('.js-today-checked');
   const todayPending = document.querySelector('.js-today-pending');
@@ -206,11 +209,36 @@ function updateDailySummary() {
   todayPending.innerHTML = todayTodos.filter((todo) => !todo.concluida).length;
 }
 
-function update
+function updateSummaryDate() {
+  const summaryDateElement = document.querySelector('.js-summary-date');
+  
+  summaryDateElement.innerHTML = dayjs(summaryDate).format('DD/MM/YYYY');
+}
 
-renderTodoList();
+const previousButton = document.querySelector('.js-previous-day');
+const nextButton = document.querySelector('.js-next-day');
+
+previousButton.addEventListener('click', () => {
+  summaryDate = dayjs(summaryDate).subtract(1, 'day').format('YYYY-MM-DD');
+
+  updateSummaryDate();
+  updateDailySummary();
+  renderTodoList(getSummaryTasks());
+})
+
+nextButton.addEventListener('click', () => {
+  summaryDate = dayjs(summaryDate).add(1, 'day').format('YYYY-MM-DD');
+
+  updateSummaryDate();
+  updateDailySummary();
+  renderTodoList(getSummaryTasks());
+})
+
+
+renderTodoList(getSummaryTasks());
 updateDailySummary();
 updateTaskNumber();
+updateSummaryDate();
 
 
 
