@@ -1,46 +1,25 @@
-const addButton = document.querySelector('.js-add-button');
-
-let todoHistory = JSON.parse(localStorage.getItem('todoList')) || [];
-
-const todoList = document.querySelector('.to-do-list');
-
-const deleteAllButton = document.querySelector('.delete-all');
-
 import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
 
+//ELEMENTOS DO HTML
+const todoList = document.querySelector('.to-do-list');
+const addButton = document.querySelector('.js-add-button');
+const deleteAllButton = document.querySelector('.delete-all');
+
+const dateInput = document.querySelector('.js-date-input');
+const previousButton = document.querySelector('.js-previous-day');
+const nextButton = document.querySelector('.js-next-day');
+
+const pendingFilter = document.querySelectorAll('.js-pending-filter');
+const checkedFilter = document.querySelectorAll('.js-checked-filter');
+const allFilter = document.querySelectorAll('.js-all-filter');
+const favoriteFilter = document.querySelector('.js-favorite-filter');
+
+//DADOS
+let todoHistory = JSON.parse(localStorage.getItem('todoList')) || [];
 const today = dayjs().format('YYYY-MM-DD');
 let summaryDate = today;
 
-const pendingFilter = document.querySelectorAll('.js-pending-filter');
-pendingFilter.forEach((button) => {
-  button.addEventListener('click', () => {
-    const pendingTodos = todoHistory.filter((todo) => !todo.concluida);
-    renderTodoList(pendingTodos);
-  })
-
-})
-
-const checkedFilter = document.querySelectorAll('.js-checked-filter');
-checkedFilter.forEach((button) => {
-  button.addEventListener('click', () => {
-    const checkedTodos = todoHistory.filter((todo) => todo.concluida);
-    renderTodoList(checkedTodos);
-  })
-
-})
-
-const allFilter = document.querySelectorAll('.js-all-filter');
-allFilter.forEach((button) => {
-  button.addEventListener('click', () => {
-    renderTodoList();
-  });
-});
-
-const favoriteFilter = document.querySelector('.js-favorite-filter');
-favoriteFilter.addEventListener('click', () => {
-  const favoriteTodos = todoHistory.filter((todo) => todo.favorita);
-  renderTodoList(favoriteTodos);
-})
+//FUNÇÕES DE RENDERIZAÇÃO
 
 function getSummaryTasks() {
   return todoHistory.filter((todo) => todo.data === summaryDate);
@@ -91,67 +70,74 @@ function renderTodoList(tasks = todoHistory) {
   })
   todoList.innerHTML = todoArray;
 
-  const deleteEach = document.querySelectorAll('.js-delete-button');
-
-  deleteEach.forEach((button) => {
-    button.addEventListener('click', (event) => {
-
-    const closestDiv = event.target.closest('.to-do-actions');
-    const matchingId = closestDiv.dataset.id;
-    const indice = todoHistory.findIndex((todo) => todo.id === matchingId);
-
-    todoHistory.splice(indice, 1);
-    localStorage.setItem('todoList', JSON.stringify(todoHistory));
-    renderTodoList();
-    updateTaskNumber();
-    updateDailySummary();
-
-    })
-
-  })
-
-  const checkButton = document.querySelectorAll('.js-check-button');
-
-  checkButton.forEach((button) => {
-    button.addEventListener('click', (event) => {
-      const closestDiv = event.target.closest('.to-do-actions');
-      const matchingId = closestDiv.dataset.id;
-      const indice = todoHistory.findIndex((todo) => todo.id === matchingId);
-
-      todoHistory[indice].concluida =  !todoHistory[indice].concluida;
-      localStorage.setItem('todoList', JSON.stringify(todoHistory));
-
-      renderTodoList();
-      updateTaskNumber();
-      updateDailySummary();
-
-      })
-
-  })
+  
 
   const favoriteButton  = document.querySelectorAll('.js-star-button');
 
   favoriteButton.forEach((button) => {
     button.addEventListener('click', (event) => {
-      const closestDiv = event.target.closest('.to-do-actions');
-      const matchingId = closestDiv.dataset.id;
-      const indice = todoHistory.findIndex((todo) => todo.id === matchingId);
+      
 
 
-      todoHistory[indice].favorita =  !todoHistory[indice].favorita;
-      localStorage.setItem('todoList', JSON.stringify(todoHistory));
-
-      renderTodoList();
-      updateTaskNumber();
-      updateDailySummary();
+      
     })
 
   })
 
 }
 
-const dateInput = document.querySelector('.js-date-input');
+function getTodoIndex(element) {
+  const closestDiv = element.closest('.to-do-actions');
+  const matchingId = closestDiv.dataset.id;
+  const indice = todoHistory.findIndex((todo) => todo.id === matchingId);
 
+  return indice;
+}
+
+// EVENTOS DAS TAREFAS
+todoList.addEventListener('click', (event) => {
+
+  if (event.target.classList.contains('js-delete-button')) {
+
+    const indice = getTodoIndex(event.target);
+
+    todoHistory.splice(indice, 1);
+    localStorage.setItem('todoList', JSON.stringify(todoHistory));
+    renderTodoList(getSummaryTasks());
+    updateTaskNumber();
+    updateDailySummary();
+
+  }
+
+  if (event.target.classList.contains('js-check-button')) {
+    
+    const indice = getTodoIndex(event.target);
+
+    todoHistory[indice].concluida =  !todoHistory[indice].concluida;
+    localStorage.setItem('todoList', JSON.stringify(todoHistory));
+
+    renderTodoList(getSummaryTasks());
+    updateTaskNumber();
+    updateDailySummary();
+
+  } 
+
+  if (event.target.classList.contains('js-star-button')) {
+    
+    const indice = getTodoIndex(event.target);
+
+    todoHistory[indice].favorita =  !todoHistory[indice].favorita;
+    localStorage.setItem('todoList', JSON.stringify(todoHistory));
+
+    renderTodoList(getSummaryTasks());
+    updateTaskNumber();
+    updateDailySummary();
+
+  }
+
+});
+
+//ADICIONAR TAREFA
 addButton.addEventListener('click', () => {
 
   const idNum = crypto.randomUUID();
@@ -165,15 +151,14 @@ addButton.addEventListener('click', () => {
     data: date
   });
   localStorage.setItem('todoList', JSON.stringify(todoHistory));
-  renderTodoList();
+  renderTodoList(getSummaryTasks());
   updateDailySummary();
   updateTaskNumber();
   
 
 })
 
-
-
+//LIMPAR TAREFAS CONCLUÍDAS
 deleteAllButton.addEventListener('click', () => {
    todoHistory = todoHistory.filter((todo) => !todo.concluida);
    localStorage.setItem('todoList', JSON.stringify(todoHistory));
@@ -184,6 +169,35 @@ deleteAllButton.addEventListener('click', () => {
   
 })
 
+//FILTROS
+pendingFilter.forEach((button) => {
+  button.addEventListener('click', () => {
+    const pendingTodos = getSummaryTasks().filter((todo) => !todo.concluida);
+    renderTodoList(pendingTodos);
+  })
+
+})
+
+checkedFilter.forEach((button) => {
+  button.addEventListener('click', () => {
+    const checkedTodos = getSummaryTasks().filter((todo) => todo.concluida);
+    renderTodoList(checkedTodos);
+  })
+
+})
+
+allFilter.forEach((button) => {
+  button.addEventListener('click', () => {
+    renderTodoList();
+  });
+});
+
+favoriteFilter.addEventListener('click', () => {
+  const favoriteTodos = getSummaryTasks().filter((todo) => todo.favorita);
+  renderTodoList(favoriteTodos);
+})
+
+//RESUMO DO DIA
 function updateTaskNumber(){
   const allTaskNumber = document.querySelector('.js-all-task-number');
   const allPendingNumber = document.querySelector('.js-pending-task-number');
@@ -215,9 +229,8 @@ function updateSummaryDate() {
   summaryDateElement.innerHTML = dayjs(summaryDate).format('DD/MM/YYYY');
 }
 
-const previousButton = document.querySelector('.js-previous-day');
-const nextButton = document.querySelector('.js-next-day');
 
+// NAVEGAÇÃO DO RESUMO
 previousButton.addEventListener('click', () => {
   summaryDate = dayjs(summaryDate).subtract(1, 'day').format('YYYY-MM-DD');
 
@@ -234,7 +247,7 @@ nextButton.addEventListener('click', () => {
   renderTodoList(getSummaryTasks());
 })
 
-
+//INICIALIZAÇÃO
 renderTodoList(getSummaryTasks());
 updateDailySummary();
 updateTaskNumber();
