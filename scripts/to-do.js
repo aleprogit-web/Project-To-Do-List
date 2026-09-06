@@ -4,6 +4,7 @@ import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
 const todoList = document.querySelector('.to-do-list');
 const addButton = document.querySelector('.js-add-button');
 
+const textInput = document.querySelector('.js-to-do-input');
 
 const dateInput = document.querySelector('.js-date-input');
 const previousButton = document.querySelector('.js-previous-day');
@@ -62,7 +63,7 @@ function renderTodoList(tasks = todoHistory) {
     if (todo.data){
       dayFormat = dayjs(todo.data).format('DD/MM/YYYY');
     }else{
-      dayFormat = "";
+      dayFormat = "Sem data";
     }
 
     let html = 
@@ -129,18 +130,34 @@ addButton.addEventListener('click', () => {
   const idNum = crypto.randomUUID();
   const todo = document.querySelector('.js-to-do-input').value;
   const date = dateInput.value;
-  todoHistory.push({
-    texto: todo,
-    id: idNum,
-    concluida: false,
-    favorita: false,
-    data: date
-  });
-  updateTodoList();
+  if (todo === ""){
+    textInput.placeholder = "Nenhuma tarefa foi digitada."
+  }else{
+   
+    todoHistory.push({
+      texto: todo,
+      id: idNum,
+      concluida: false,
+      favorita: false,
+      data: date
+    });
+
+    textInput.value = "";
+    dateInput.value = "";
+    textInput.placeholder = "O que você precisa fazer?";
+    updateTodoList();
+
+  }
+
+  console.log(todoHistory);
   
 })
 
-
+textInput.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter') {
+    addButton.click();
+  }
+});
 
 //FILTROS
 pendingFilter.forEach((button) => {
@@ -166,7 +183,7 @@ allFilter.forEach((button) => {
 });
 
 favoriteFilter.addEventListener('click', () => {
-  const favoriteTodos = getSummaryTasks().filter((todo) => todo.favorita);
+  const favoriteTodos = todoHistory.filter((todo) => todo.favorita);
   renderTodoList(favoriteTodos);
 })
 

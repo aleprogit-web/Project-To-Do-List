@@ -151,6 +151,11 @@ body.dark-mode .summary-header{
   cursor: pointer;
 }
 
+body.dark-mode .day-button{
+  background-color: #36172a;
+  color: white;
+}
+
 .summary-date{
   font-size: 15px;
 }
@@ -350,6 +355,10 @@ body.dark-mode .to-do-actions {
 .task-date{
   color: #353535;
   font-size: 15px;
+}
+
+body.dark-mode .task-date{
+  color: white;
 }
 
 .to-do-actions.completed .to-do {

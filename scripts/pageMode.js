@@ -6,49 +6,57 @@ const pendentesIcon = document.querySelectorAll('.pendentes-img');
 const concluidasIcon = document.querySelectorAll('.concluidas-img');
 const favoritasIcon = document.querySelectorAll('.favoritas-img');
 
-const calendarioIcon = document.querySelector('.calendar-img');
+const calendarioIcon = document.querySelectorAll('.calendar-img');
 
 modeButton.addEventListener('click', () => {
   body.classList.toggle('dark-mode');
 
   if (body.classList.contains('dark-mode') === true){
      modeIcon.src = 'images/moon.png';
-     calendarioIcon.src = 'images/calendarioDarkMode.png';
-
-  todasIcon.forEach((icon) => {
-    icon.src = 'images/darkModeList.png';
-  });
-
-  pendentesIcon.forEach((icon) => {
-    icon.src = 'images/darkModeCircle.png';
-  });
-
-  concluidasIcon.forEach((icon) => {
-    icon.src = 'images/darkModeCheck.png';
-  });
-
-  favoritasIcon.forEach((icon) => {
-    icon.src = 'images/darkModeStar.png';
-  });
-
-  }else{
-    modeIcon.src = 'images/sun.png';
-    calendarioIcon.src = 'images/calendario.png';
      
-  todasIcon.forEach((icon) => {
-    icon.src = 'images/list.png';
-  });
+     calendarioIcon.forEach((icon) =>{
+      icon.src = 'images/calendarioDarkMode.png';
+     })
 
-  pendentesIcon.forEach((icon) => {
-    icon.src = 'images/circle.png';
-  });
+    todasIcon.forEach((icon) => {
+      icon.src = 'images/darkModeList.png';
+    });
 
-  concluidasIcon.forEach((icon) => {
-    icon.src = 'images/check.png';
-  });
+    pendentesIcon.forEach((icon) => {
+      icon.src = 'images/darkModeCircle.png';
+    });
 
-  favoritasIcon.forEach((icon) => {
-    icon.src = 'images/star.png';
-  });
+    concluidasIcon.forEach((icon) => {
+      icon.src = 'images/darkModeCheck.png';
+    });
+
+    favoritasIcon.forEach((icon) => {
+      icon.src = 'images/darkModeStar.png';
+    });
+
+    }else{
+
+      modeIcon.src = 'images/sun.png';
+      
+
+      calendarioIcon.forEach((icon) =>{
+        icon.src = 'images/calendario.png';
+      })
+      
+      todasIcon.forEach((icon) => {
+        icon.src = 'images/list.png';
+      });
+
+      pendentesIcon.forEach((icon) => {
+        icon.src = 'images/circle.png';
+      });
+
+      concluidasIcon.forEach((icon) => {
+        icon.src = 'images/check.png';
+      });
+
+      favoritasIcon.forEach((icon) => {
+        icon.src = 'images/star.png';
+      });
   }
 })
