@@ -8,15 +8,18 @@ const favoritasIcon = document.querySelectorAll('.favoritas-img');
 
 const calendarioIcon = document.querySelectorAll('.calendar-img');
 
+const closeIcon = document.querySelector('.close-editar');
+
 modeButton.addEventListener('click', () => {
   body.classList.toggle('dark-mode');
 
   if (body.classList.contains('dark-mode') === true){
-     modeIcon.src = 'images/moon.png';
+    modeIcon.src = 'images/moon.png';
+    closeIcon.src = 'images/closeDarkMode.png';
      
-     calendarioIcon.forEach((icon) =>{
-      icon.src = 'images/calendarioDarkMode.png';
-     })
+    calendarioIcon.forEach((icon) =>{
+    icon.src = 'images/calendarioDarkMode.png';
+    })
 
     todasIcon.forEach((icon) => {
       icon.src = 'images/darkModeList.png';
@@ -37,6 +40,7 @@ modeButton.addEventListener('click', () => {
     }else{
 
       modeIcon.src = 'images/sun.png';
+      closeIcon.src = 'images/close.png';
       
 
       calendarioIcon.forEach((icon) =>{

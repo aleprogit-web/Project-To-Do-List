@@ -252,6 +252,7 @@ body.dark-mode .div-input{
   font-size: 18px;
 }
 
+
 body.dark-mode .input{
   background-color: #3b2932;
   color: white;
@@ -325,8 +326,27 @@ body.dark-mode .filter-button{
   background-color: #ffbac6;
 }
 
-.delete-all:hover{
-  background-color: #d0e4ff;
+body.dark-mode .filter-option:hover{
+  background-color:#36172a;
+}
+
+.day-filter:hover{
+  background-color: #ffbac6;
+}
+
+body.dark-mode .day-filter:hover{
+  background-color:#36172a;
+}
+
+.to-do {
+  cursor: pointer;
+}
+.to-do:hover{
+  background-color: #e995a3;
+}
+
+body.dark-mode .to-do:hover{
+  background-color:#161114;
 }
 
 .to-do-list{
@@ -392,3 +412,104 @@ body.dark-mode .check-button{
   cursor:pointer;
 }
 
+.edit-task{
+  background-color: #ffcbd4;
+  position: absolute;
+  top: 30%;
+  left: 40%;
+  border-radius: 10px;
+  width: 350px;
+  height: 270px;
+  padding: 20px;
+  display: none;
+}
+
+body.dark-mode .edit-task{
+  background-color:#161114;
+  color: white;
+}
+
+.editar-tarefa{
+  display: flex;
+  gap: 160px;
+  margin-bottom: 10px;
+
+}
+
+.editar-title{
+  font-weight: 500;
+  color:#c01733;
+  font-size: 20px;
+}
+
+body.dark-mode .editar-title{
+  color:#f8a0af;
+}
+
+.tarefa-editar-div{
+  margin-bottom: 10px;
+}
+
+.tarefa{
+  margin-bottom: 10px;
+}
+
+.data-opcional{
+  margin-bottom: 10px;
+}
+
+.input-editar{
+  border: none;
+  width: 300px;
+  padding: 6px;
+  border-radius: 5px;
+}
+
+.data-editar-div{
+  margin-bottom: 25px;
+}
+
+.botao-cancelar{
+  margin-right: 10px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-right: 9px;
+  padding-left: 9px;
+  width: 140px;
+  color:#c01733;
+  font-family: "Fredoka", sans-serif;
+  font-weight: 500;
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+body.dark-mode .botao-cancelar{
+  
+  color:#36172a;
+  background-color: white;
+}
+
+.botao-salvar{
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-right: 9px;
+  padding-left: 9px;
+  width: 140px;
+  background-color:#c01733;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: "Fredoka", sans-serif;
+}
+
+body.dark-mode .botao-salvar{
+  color:white;
+  background-color:#36172a;
+}
+
+.close-editar{
+  cursor: pointer;
+}

@@ -4,6 +4,13 @@ import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
 const todoList = document.querySelector('.to-do-list');
 const addButton = document.querySelector('.js-add-button');
 
+const editTask = document.querySelector('.edit-task');
+const closeEdit = document.querySelector('.close-editar');
+const editText = document.querySelector('.tarefa-editar-div .input-editar');
+const editDate = document.querySelector('.data-editar-div .input-editar');
+const cancelEdit = document.querySelector('.botao-cancelar');
+const saveEdit = document.querySelector('.botao-salvar');
+
 const textInput = document.querySelector('.js-to-do-input');
 
 const dateInput = document.querySelector('.js-date-input');
@@ -82,6 +89,7 @@ function renderTodoList(tasks = todoHistory) {
   })
   todoList.innerHTML = todoArray;
 
+  
 }
 
 function getTodoIndex(element) {
@@ -91,6 +99,8 @@ function getTodoIndex(element) {
 
   return indice;
 }
+
+let indiceSave;
 
 // EVENTOS DAS TAREFAS
 todoList.addEventListener('click', (event) => {
@@ -122,7 +132,32 @@ todoList.addEventListener('click', (event) => {
 
   }
 
+
+  if(event.target.classList.contains('to-do')){
+    indiceSave = getTodoIndex(event.target);
+
+    editTask.style.display = 'block';
+    editText.value = todoHistory[indiceSave].texto;
+    editDate.value = todoHistory[indiceSave].data;
+  }
+
 });
+
+saveEdit.addEventListener('click', () => {
+  todoHistory[indiceSave].texto = editText.value;
+  todoHistory[indiceSave].data = editDate.value;
+  updateTodoList();
+  editTask.style.display = 'none';
+  
+})
+
+cancelEdit.addEventListener('click', () => {
+  editTask.style.display = 'none';
+})
+
+closeEdit.addEventListener('click', () => {
+  editTask.style.display = 'none';
+})
 
 //ADICIONAR TAREFA
 addButton.addEventListener('click', () => {
@@ -240,6 +275,8 @@ nextButton.addEventListener('click', () => {
   updateDailySummary();
   renderTodoList(getSummaryTasks());
 })
+
+
 
 //INICIALIZAÇÃO
 renderTodoList(getSummaryTasks());
