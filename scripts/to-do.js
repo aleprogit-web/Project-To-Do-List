@@ -257,31 +257,52 @@ textInput.addEventListener('keydown', (event) => {
 });
 
 //FILTROS
+
+function scrollToTasks() {
+  todoList.scrollIntoView({
+    behavior: 'smooth'
+  });
+}
+
 pendingFilter.forEach((button) => {
   button.addEventListener('click', () => {
     const pendingTodos = getSummaryTasks().filter((todo) => !todo.concluida);
     renderTodoList(pendingTodos);
-  })
 
+    if (button.closest('.sidebar')) {
+      scrollToTasks();
+    }
+  })
 })
 
 checkedFilter.forEach((button) => {
   button.addEventListener('click', () => {
     const checkedTodos = getSummaryTasks().filter((todo) => todo.concluida);
     renderTodoList(checkedTodos);
-  })
 
+    if (button.closest('.sidebar')) {
+      scrollToTasks();
+    }
+  })
 })
 
 allFilter.forEach((button) => {
   button.addEventListener('click', () => {
     renderTodoList();
+
+    if (button.closest('.sidebar')) {
+      scrollToTasks();
+    }
   });
 });
 
 favoriteFilter.addEventListener('click', () => {
   const favoriteTodos = todoHistory.filter((todo) => todo.favorita);
   renderTodoList(favoriteTodos);
+
+  if (favoriteFilter.closest('.sidebar')) {
+    scrollToTasks();
+  }
 })
 
 dayFilter.addEventListener('click', () => {

@@ -259,7 +259,7 @@ body.dark-mode .input{
 }
 
 .task-options {
-  display: flex;
+ display: flex;
   align-items: center;
   gap: 20px;
   margin-bottom: 10px;
@@ -276,13 +276,15 @@ body.dark-mode .task-options {
   padding: 4px 6px;
   font-family: "Fredoka", sans-serif;
   font-size: 14px;
+  width: 125px;
+  position: relative;
+top: 2px;
 }
 
 body.dark-mode .task-options input[type="date"] {
   background-color: #3b2932;
   color: #fde3e7;
 }
-
 
 .add-button{
   position: absolute;
@@ -610,4 +612,128 @@ body.dark-mode .seu-nome,
   border-radius: 5px;
   cursor: pointer;
   display: block;
+}
+
+@media (max-width: 600px) {
+
+  .sidebar {
+    position: relative;
+    width: 100%;
+    height: auto;
+    bottom: auto;
+  }
+
+  .main {
+    margin-left: 0;
+    padding: 15px;
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .to-do-title {
+    margin-bottom: 15px;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+
+  .sidebar-options {
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+  }
+
+  .option {
+    padding: 6px 20px;
+    margin-bottom: 2px;
+  }
+
+  .daily-summary {
+    padding: 15px;
+  }
+
+  .header {
+  flex-wrap: nowrap;
+  gap: 10px;
+}
+
+  .greeting {
+    font-size: 24px;
+    margin-top: 5px;
+  }
+
+  .header-buttons {
+    margin-left: auto;
+  }
+
+  .mode-button,
+  .settings-button {
+    width: 45px;
+    height: 45px;
+  }
+
+  .div-input {
+    margin-top: 5px;
+    width: 100%;
+  }
+
+  .input {
+    font-size: 16px;
+    padding-left: 15px;
+    padding-right: 100px;
+  }
+
+  .add-button {
+    right: 5px;
+  }
+
+  
+  
+  .filters {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .filter-button {
+    min-width: 0;
+  }
+
+  .to-do-list {
+    padding-right: 0;
+  }
+
+  .to-do-actions {
+    gap: 8px;
+    padding: 12px;
+  }
+
+  .to-do {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .task-actions {
+    gap: 8px;
+  }
+
+  .check-button {
+    margin-right: 10px;
+    flex-shrink: 0;
+  }
+
+  .task-date {
+    font-size: 13px;
+  }
+
+  .edit-task,
+  .settings {
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 30px);
+    max-width: 350px;
+  }
+
 }
