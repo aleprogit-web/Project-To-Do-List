@@ -3,6 +3,15 @@ import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
 //ELEMENTOS DO HTML
 const todoList = document.querySelector('.to-do-list');
 const addButton = document.querySelector('.js-add-button');
+const settingsButton = document.querySelector('.settings-button');
+const settings = document.querySelector('.settings');
+const name = document.querySelector('.name');
+const inputName = document.querySelector('.input-name');
+const saveSettings = document.querySelector('.settings-salvar');
+const cancelSettings = document.querySelector('.settings-cancelar');
+const closeSettings = document.querySelector('.close-settings');
+const cleanCheckedToDos = document.querySelector('.settings-limpar');
+const deleteAllToDos = document.querySelector('.settings-excluir');
 
 const editTask = document.querySelector('.edit-task');
 const closeEdit = document.querySelector('.close-editar');
@@ -37,7 +46,7 @@ function getSummaryTasks() {
 function updateTodoList() {
   localStorage.setItem('todoList', JSON.stringify(todoHistory));
 
-  renderTodoList(getSummaryTasks());
+  renderTodoList();
 
   updateTaskNumber();
 
@@ -89,7 +98,6 @@ function renderTodoList(tasks = todoHistory) {
   })
   todoList.innerHTML = todoArray;
 
-  
 }
 
 function getTodoIndex(element) {
@@ -99,6 +107,15 @@ function getTodoIndex(element) {
 
   return indice;
 }
+
+function updateName(){
+  const savedName = localStorage.getItem('name');
+  if(savedName === '' || savedName == null){
+    name.innerHTML = '';
+  }else{
+    name.innerHTML = `, ${savedName}`;
+  }
+} 
 
 let indiceSave;
 
@@ -143,21 +160,68 @@ todoList.addEventListener('click', (event) => {
 
 });
 
+//BOTÕES DO EDITAR
+
 saveEdit.addEventListener('click', () => {
   todoHistory[indiceSave].texto = editText.value;
   todoHistory[indiceSave].data = editDate.value;
   updateTodoList();
   editTask.style.display = 'none';
   
-})
+});
 
 cancelEdit.addEventListener('click', () => {
   editTask.style.display = 'none';
-})
+});
 
 closeEdit.addEventListener('click', () => {
   editTask.style.display = 'none';
+});
+
+
+//BOTÕES DAS CONFIGURAÇÕES
+let isSettingsOn = false;
+
+settingsButton.addEventListener('click', () => {
+  if(isSettingsOn == false){
+    settings.style.display = 'block';
+    isSettingsOn = true;
+  }else{
+    settings.style.display = 'none';
+    isSettingsOn = false;
+  }
+});
+
+closeSettings.addEventListener('click', () => {
+  settings.style.display = 'none';
 })
+cancelSettings.addEventListener('click', () => {
+  settings.style.display = 'none';
+})
+
+saveSettings.addEventListener('click', () => {
+  if (inputName.value == ''){
+    name.innerHTML = '';  
+  }else{
+    name.innerHTML = `, ${inputName.value}`;  
+  }
+  localStorage.setItem('name', inputName.value);
+  settings.style.display = 'none';
+}) 
+
+cleanCheckedToDos.addEventListener('click', () => {
+  todoHistory = todoHistory.filter((todo) => !todo.concluida);
+  updateTodoList();
+  settings.style.display = 'none';
+
+});
+
+deleteAllToDos.addEventListener('click', () => {
+  todoHistory = [];
+  updateTodoList();
+  settings.style.display = 'none';
+})
+
 
 //ADICIONAR TAREFA
 addButton.addEventListener('click', () => {
@@ -183,8 +247,6 @@ addButton.addEventListener('click', () => {
     updateTodoList();
 
   }
-
-  console.log(todoHistory);
   
 })
 
@@ -279,13 +341,10 @@ nextButton.addEventListener('click', () => {
 
 
 //INICIALIZAÇÃO
-renderTodoList(getSummaryTasks());
+renderTodoList();
 updateDailySummary();
 updateTaskNumber();
 updateSummaryDate();
-
-
-
-
+updateName();
 
 

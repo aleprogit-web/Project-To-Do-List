@@ -446,7 +446,8 @@ body.dark-mode .editar-title{
   color:#f8a0af;
 }
 
-.tarefa-editar-div{
+.tarefa-editar-div,
+.nome-div{
   margin-bottom: 10px;
 }
 
@@ -458,14 +459,16 @@ body.dark-mode .editar-title{
   margin-bottom: 10px;
 }
 
-.input-editar{
+.input-editar,
+.input-name{
   border: none;
   width: 300px;
   padding: 6px;
   border-radius: 5px;
 }
 
-.data-editar-div{
+.data-editar-div,
+.tarefas-div{
   margin-bottom: 25px;
 }
 
@@ -510,6 +513,101 @@ body.dark-mode .botao-salvar{
   background-color:#36172a;
 }
 
-.close-editar{
+.close-editar,
+.close-settings{
   cursor: pointer;
+}
+
+
+
+.settings{
+  background-color: #d0e4ff;
+  position: absolute;
+  top: 10%;
+  left: 70%;
+  border-radius: 10px;
+  width: 350px;
+  height: 300px;
+  padding: 20px;
+  display: none;
+}
+
+body.dark-mode .settings{
+  background-color: #042958;
+}
+
+.settings-title{
+  font-weight: 500;
+  color:#0370ff;
+  font-size: 20px;
+}
+.settings-container{
+  display: flex;
+  gap: 160px;
+  margin-bottom: 10px;
+
+}
+
+.seu-nome{
+  margin-bottom: 10px;
+}
+
+body.dark-mode .seu-nome,
+.tarefas{
+  color: white;
+}
+
+.tarefas{
+  margin-bottom: 10px;
+}
+
+.settings-salvar{
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-right: 9px;
+  padding-left: 9px;
+  width: 140px;
+  background-color:#0370ff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: "Fredoka", sans-serif;
+} 
+
+.settings-cancelar{
+  margin-right: 10px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-right: 9px;
+  padding-left: 9px;
+  width: 140px;
+  color:#0370ff;
+  font-family: "Fredoka", sans-serif;
+  font-weight: 500;
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.settings-limpar, 
+.settings-excluir{
+  margin-right: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-right: 9px;
+  padding-left: 9px;
+  width: 180px;
+  color: white;
+  font-family: "Fredoka", sans-serif;
+  font-weight: 500;
+  background-color:#0370ff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: block;
 }
