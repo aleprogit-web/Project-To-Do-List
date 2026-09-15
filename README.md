@@ -2,6 +2,8 @@
 
 Um aplicativo de lista de tarefas desenvolvido com HTML, CSS e JavaScript, criado para praticar conceitos de desenvolvimento web e manipulação do DOM.
 
+🔗 **[Acesse o projeto](https://aleprogit-web.github.io/Project-To-Do-List/)**
+
 ## 🇧🇷 Português
 
 ### Sobre o projeto
@@ -52,6 +54,8 @@ Este projeto foi criado como uma forma de praticar JavaScript e desenvolver uma 
 ### About the project
 
 To-Do List is a simple task management application for organizing everyday tasks.
+
+🔗 **[Live Demo](https://aleprogit-web.github.io/Project-To-Do-List/)**
 
 The project was developed while studying JavaScript, focusing on DOM manipulation, events, arrays, objects, and data storage using `localStorage`.
 
