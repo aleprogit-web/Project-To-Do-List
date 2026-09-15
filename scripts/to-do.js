@@ -29,7 +29,7 @@ const nextButton = document.querySelector('.js-next-day');
 const pendingFilter = document.querySelectorAll('.js-pending-filter');
 const checkedFilter = document.querySelectorAll('.js-checked-filter');
 const allFilter = document.querySelectorAll('.js-all-filter');
-const favoriteFilter = document.querySelector('.js-favorite-filter');
+const favoriteFilter = document.querySelectorAll('.js-favorite-filter');
 const dayFilter = document.querySelector('.day-filter');
 
 //DADOS
@@ -256,56 +256,35 @@ textInput.addEventListener('keydown', (event) => {
   }
 });
 
-//FILTROS
-
-function scrollToTasks() {
-  todoList.scrollIntoView({
-    behavior: 'smooth'
-  });
-}
-
-pendingFilter.forEach((button) => {
-  button.addEventListener('click', () => {
-    const pendingTodos = getSummaryTasks().filter((todo) => !todo.concluida);
-    renderTodoList(pendingTodos);
-
-    if (button.closest('.sidebar')) {
-      scrollToTasks();
-    }
-  })
-})
-
-checkedFilter.forEach((button) => {
-  button.addEventListener('click', () => {
-    const checkedTodos = getSummaryTasks().filter((todo) => todo.concluida);
-    renderTodoList(checkedTodos);
-
-    if (button.closest('.sidebar')) {
-      scrollToTasks();
-    }
-  })
-})
-
-allFilter.forEach((button) => {
-  button.addEventListener('click', () => {
-    renderTodoList();
-
-    if (button.closest('.sidebar')) {
-      scrollToTasks();
-    }
+//FILTROS 
+pendingFilter.forEach((button) => { 
+  button.addEventListener('click', () => { 
+    const pendingTodos = todoHistory.filter((todo) => !todo.concluida);
+    renderTodoList(pendingTodos); 
   });
 });
 
-favoriteFilter.addEventListener('click', () => {
-  const favoriteTodos = todoHistory.filter((todo) => todo.favorita);
-  renderTodoList(favoriteTodos);
+checkedFilter.forEach((button) => { 
+  button.addEventListener('click', () => { 
+    const checkedTodos = todoHistory.filter((todo) => todo.concluida);
+    renderTodoList(checkedTodos); 
+  }) 
+}) 
 
-  if (favoriteFilter.closest('.sidebar')) {
-    scrollToTasks();
-  }
-})
+allFilter.forEach((button) => { 
+  button.addEventListener('click', () => { 
+    renderTodoList(); 
+  }); 
+}); 
 
-dayFilter.addEventListener('click', () => {
+favoriteFilter.forEach((button) => {
+  button.addEventListener('click', () => {
+    const favoriteTodos = todoHistory.filter((todo) => todo.favorita);
+    renderTodoList(favoriteTodos);
+  });
+});
+
+dayFilter.addEventListener('click', () => { 
   renderTodoList(getSummaryTasks());
 });
 

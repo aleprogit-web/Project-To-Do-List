@@ -271,14 +271,14 @@ body.dark-mode .task-options {
 }
 
 .task-options input[type="date"] {
-  border: none;
-  border-radius: 5px;
-  padding: 4px 6px;
+  border: none; 
+  border-radius: 5px; 
+  padding: 4px 6px; 
+  font-size: 14px; 
+  width: 125px; 
+  position: relative; 
   font-family: "Fredoka", sans-serif;
-  font-size: 14px;
-  width: 125px;
-  position: relative;
-top: 2px;
+  top: 2px;
 }
 
 body.dark-mode .task-options input[type="date"] {
@@ -317,6 +317,9 @@ body.dark-mode .task-options input[type="date"] {
   padding: 6px 6px 6px 6px;
   border-radius: 20px;
   cursor: pointer;
+}
+.mobile-favorite-filter {
+  display: none;
 }
 
 body.dark-mode .filter-button{
@@ -520,8 +523,6 @@ body.dark-mode .botao-salvar{
   cursor: pointer;
 }
 
-
-
 .settings{
   background-color: #d0e4ff;
   position: absolute;
@@ -553,14 +554,16 @@ body.dark-mode .settings{
 .seu-nome{
   margin-bottom: 10px;
 }
-
-body.dark-mode .seu-nome,
 .tarefas{
+  margin-bottom: 10px;
+}
+
+body.dark-mode .seu-nome{
   color: white;
 }
 
-.tarefas{
-  margin-bottom: 10px;
+body.dark-mode .tarefas{
+  color: white;
 }
 
 .settings-salvar{
@@ -614,9 +617,11 @@ body.dark-mode .seu-nome,
   display: block;
 }
 
+/*RESPONSIVO*/
 @media (max-width: 600px) {
 
   .sidebar {
+    display: none;
     position: relative;
     width: 100%;
     height: auto;
@@ -624,11 +629,11 @@ body.dark-mode .seu-nome,
   }
 
   .main {
-    margin-left: 0;
-    padding: 15px;
-    height: auto;
-    min-height: 100vh;
-  }
+  margin-left: 0;
+  padding: 15px;
+  height: 100vh;
+  box-sizing: border-box;
+}
 
   .to-do-title {
     margin-bottom: 15px;
@@ -686,8 +691,6 @@ body.dark-mode .seu-nome,
   .add-button {
     right: 5px;
   }
-
-  
   
   .filters {
     display: grid;
@@ -699,9 +702,15 @@ body.dark-mode .seu-nome,
     min-width: 0;
   }
 
-  .to-do-list {
-    padding-right: 0;
+  .mobile-favorite-filter {
+    grid-column: 1 / -1;
+    display: flex;
   }
+
+  .to-do-list {
+  padding-right: 0;
+  
+}
 
   .to-do-actions {
     gap: 8px;
@@ -730,10 +739,13 @@ body.dark-mode .seu-nome,
 
   .edit-task,
   .settings {
+    position: fixed;
     left: 50%;
     transform: translateX(-50%);
     width: calc(100% - 30px);
     max-width: 350px;
   }
 
+   
+ 
 }
